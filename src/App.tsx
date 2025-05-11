@@ -10,7 +10,7 @@ interface BookProps {
   coverUrl?: string;
   author?: string;
 }
-
+// 渲染一本书
 const Book = ({ brief, categories, ...props }: BookProps) => {
   if (!props.title) {
     return;
@@ -95,7 +95,6 @@ const FeaturedBooksSection = ({
     </Card>
   );
 };
-
 const CategorySection = ({
   section_name,
   items,
@@ -122,7 +121,6 @@ const CategorySection = ({
     </Card>
   );
 };
-
 const PickForYouSection = ({
   section_name,
   items,
@@ -175,7 +173,6 @@ const CollectionSection = ({
     </Card>
   );
 };
-
 const BasicSection = ({
   section_name,
   items,
@@ -203,6 +200,7 @@ const BasicSection = ({
   );
 };
 
+// 根据不同的section_type  渲染每一个section
 const ContentPage = ({ section }: { section: any }) => {
   switch (section.section_type) {
     case "daily_free":
@@ -226,10 +224,13 @@ const ContentPage = ({ section }: { section: any }) => {
       );
   }
 };
+
+// 入口
 function App() {
   const [data, setData] = useState<undefined | any[]>(undefined);
   const [loading, setLoading] = useState(false);
 
+  // 请求api
   const fetchData = () => {
     setLoading(true);
     fetch("https://0pxv1i7w8c.execute-api.us-east-1.amazonaws.com/prod/browse")
