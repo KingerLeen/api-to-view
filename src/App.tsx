@@ -33,8 +33,8 @@ const Book = ({ brief, categories, ...props }: BookProps) => {
           {brief && <div>{brief}</div>}
           <div>Author: {props.author}</div>
           <div>
-            {categories?.map((item) => {
-              return <Tag>{item}</Tag>;
+            {categories?.map((item, i) => {
+              return <Tag key={i}>{item}</Tag>;
             })}
           </div>
         </div>
@@ -62,8 +62,8 @@ const DailyFreeSection = ({
           gap: 8,
         }}
       >
-        {items?.map((item: any) => {
-          return <Book {...item} />;
+        {items?.map((item: any, i: any) => {
+          return <Book key={item.uuid + String(i)} {...item} />;
         })}
       </div>
     </Card>
@@ -88,8 +88,8 @@ const FeaturedBooksSection = ({
           gap: 8,
         }}
       >
-        {items?.map((item: any) => {
-          return <Book {...item} />;
+        {items?.map((item: any, i: any) => {
+          return <Book key={item.uuid + String(i)} {...item} />;
         })}
       </div>
     </Card>
@@ -115,8 +115,8 @@ const CategorySection = ({
           gap: 8,
         }}
       >
-        {items?.map((item: any) => {
-          return <Book {...item} />;
+        {items?.map((item: any, i: any) => {
+          return <Book key={item.uuid + String(i)} {...item} />;
         })}
       </div>
     </Card>
@@ -142,8 +142,8 @@ const PickForYouSection = ({
           gap: 8,
         }}
       >
-        {items?.map((item: any) => {
-          return <Book {...item} />;
+        {items?.map((item: any, i: any) => {
+          return <Book key={item.uuid + String(i)} {...item} />;
         })}
       </div>
     </Card>
@@ -168,8 +168,8 @@ const CollectionSection = ({
           gap: 8,
         }}
       >
-        {items?.map((item: any) => {
-          return <Book {...item} />;
+        {items?.map((item: any, i: any) => {
+          return <Book key={item.uuid + String(i)} {...item} />;
         })}
       </div>
     </Card>
@@ -195,8 +195,8 @@ const BasicSection = ({
           gap: 8,
         }}
       >
-        {items?.map((item: any) => {
-          return <Book {...item} />;
+        {items?.map((item: any, i: any) => {
+          return <Book key={item.uuid + String(i)} {...item} />;
         })}
       </div>
     </Card>
@@ -263,8 +263,10 @@ function App() {
       }}
     >
       <Spin spinning={loading} fullscreen></Spin>
-      {data?.map?.((section) => {
-        return <ContentPage key={section.section_id} section={section} />;
+      {data?.map?.((section, i) => {
+        return (
+          <ContentPage key={section.section_id + String(i)} section={section} />
+        );
       }) || (loading ? "loading" : "not found")}
     </div>
   );
